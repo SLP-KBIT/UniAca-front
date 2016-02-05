@@ -11,14 +11,11 @@ public class Question : MonoBehaviour {
     public UnityEngine.UI.Text buttonLabel2;
     public UnityEngine.UI.Text buttonLabel3;
     public UnityEngine.UI.Text buttonLabel4;
-    public string questiontext = "text";
-    public string buttontext1 = "正解";
-    public string buttontext2 = "不正解";
-    public string buttontext3 = "不正解";
-    public string buttontext4 = "不正解";
+    int number;
 
     void Start()
     {
+        number = 1;
         StartCoroutine("QuestionControll");
     }
 
@@ -29,7 +26,10 @@ public class Question : MonoBehaviour {
 
     public IEnumerator QuestionControll()
     {
-        string url = "http://133.92.165.48:9000/questions/get/1/1";
+        string temp1 = "http://133.92.165.48:9000/questions/1/";
+        string temp2 = number.ToString();
+        string url = temp1 + temp2;
+        number += 1;
         WWW www = new WWW(url);
         yield return www;
         var textAsset = Resources.Load("sample") as TextAsset;
