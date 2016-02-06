@@ -33,8 +33,9 @@ public class Decision : MonoBehaviour {
 
     private IEnumerator postProcessing()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
+        amimatorControll.SendMessage("waitMotion");
         CorrectText.SetActive(false);
         IncorrectText.SetActive(false);
 

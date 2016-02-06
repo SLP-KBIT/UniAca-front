@@ -16,7 +16,6 @@ public class AmimatorControll : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void correctMotion()
@@ -27,6 +26,12 @@ public class AmimatorControll : MonoBehaviour {
     public void incorrectMotion()
     {
         animator.SetBool("is_incorrect", true);
+    }
+
+    public void waitMotion()
+    {
+        animator.SetBool("is_correct", false);
+        animator.SetBool("is_incorrect", false);
     }
 
 }
