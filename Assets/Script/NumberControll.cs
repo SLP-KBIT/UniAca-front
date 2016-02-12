@@ -13,7 +13,9 @@ public class NumberControll : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public void numberPrint () {
+        var question = GetComponent<Question>();
+        num = question.getQuestionNumber();
         number.text = num.ToString();
 	}
 }

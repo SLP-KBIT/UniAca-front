@@ -30,9 +30,9 @@ public class Question : MonoBehaviour {
         string temp1 = "http://133.92.165.48:9000/api/v1/questions/1/";
         string temp2 = number.ToString();
         string url = temp1 + temp2;
-        number += 1;
         WWW www = new WWW(url);
         yield return www;
+        var numberControll = GetComponent<NumberControll>();
         var textAsset = Resources.Load("sample") as TextAsset;
         var jsonText = textAsset.text;
 
@@ -43,6 +43,8 @@ public class Question : MonoBehaviour {
         buttonLabel2.text = (string)jsonData["choices"][1];
         buttonLabel3.text = (string)jsonData["choices"][2];
         buttonLabel4.text = (string)jsonData["choices"][3];
+        numberControll.numberPrint();
+        number += 1;
     }
 
     public int getQuestionNumber()

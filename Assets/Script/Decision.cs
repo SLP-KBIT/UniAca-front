@@ -10,7 +10,8 @@ public class Decision : MonoBehaviour {
 
     public void OnClick(int number)
     {
-        //GameController.SendMessage("answer", number);
+        //var answerReturn = GetComponent<answerReturn>();
+        //answerReturn.ansewer(number);
 
         switch (number)
         {
