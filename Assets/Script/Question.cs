@@ -3,6 +3,7 @@ using System.Collections;
 using MiniJSON;
 using LitJson;
 using System.Collections.Generic;
+using System;
 
 public class Question : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class Question : MonoBehaviour {
     public UnityEngine.UI.Text buttonLabel2;
     public UnityEngine.UI.Text buttonLabel3;
     public UnityEngine.UI.Text buttonLabel4; 
-    int number;
+    private int number;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class Question : MonoBehaviour {
 
     public IEnumerator QuestionControll()
     {
-        string temp1 = "http://133.92.165.48:9000/questions/1/";
+        string temp1 = "http://133.92.165.48:9000/api/v1/questions/1/";
         string temp2 = number.ToString();
         string url = temp1 + temp2;
         number += 1;
@@ -42,5 +43,27 @@ public class Question : MonoBehaviour {
         buttonLabel2.text = (string)jsonData["choices"][1];
         buttonLabel3.text = (string)jsonData["choices"][2];
         buttonLabel4.text = (string)jsonData["choices"][3];
+    }
+
+    public int getQuestionNumber()
+    {
+        return number;
+    }
+
+    public string getQuestionText(int number)
+    {
+        switch (number)
+        {
+            case 1 :
+                return buttonLabel1.text;
+            case 2:
+                return buttonLabel2.text;
+            case 3:
+                return buttonLabel3.text;
+            case 4:
+                return buttonLabel4.text;
+        }
+        return buttonLabel1.text;
+
     }
 }

@@ -10,6 +10,8 @@ public class Decision : MonoBehaviour {
 
     public void OnClick(int number)
     {
+        //GameController.SendMessage("answer", number);
+
         switch (number)
         {
             case 0:
