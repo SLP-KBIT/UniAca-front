@@ -10,7 +10,7 @@ public class Question : MonoBehaviour {
     public UnityEngine.UI.Text buttonLabel1;
     public UnityEngine.UI.Text buttonLabel2;
     public UnityEngine.UI.Text buttonLabel3;
-    public UnityEngine.UI.Text buttonLabel4;
+    public UnityEngine.UI.Text buttonLabel4; 
     int number;
 
     void Start()
