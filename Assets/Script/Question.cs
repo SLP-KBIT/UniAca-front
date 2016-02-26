@@ -11,7 +11,7 @@ public class Question : MonoBehaviour {
     public UnityEngine.UI.Text buttonLabel1;
     public UnityEngine.UI.Text buttonLabel2;
     public UnityEngine.UI.Text buttonLabel3;
-    public UnityEngine.UI.Text buttonLabel4; 
+    public UnityEngine.UI.Text buttonLabel4;
     private int number;
 
     void Start()
@@ -50,22 +50,5 @@ public class Question : MonoBehaviour {
     public int getQuestionNumber()
     {
         return number;
-    }
-
-    public string getQuestionText(int number)
-    {
-        switch (number)
-        {
-            case 1 :
-                return buttonLabel1.text;
-            case 2:
-                return buttonLabel2.text;
-            case 3:
-                return buttonLabel3.text;
-            case 4:
-                return buttonLabel4.text;
-        }
-        return buttonLabel1.text;
-
     }
 }
