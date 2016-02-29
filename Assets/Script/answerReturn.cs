@@ -6,7 +6,6 @@ public class answerReturn : MonoBehaviour {
     private WWW _www;
     private WWWForm _wwwForm;
     public GameObject Canvas;
-   Question question;
 
     // Use this for initialization
     /* public void answer ( int number ) {
@@ -15,21 +14,22 @@ public class answerReturn : MonoBehaviour {
      }*/
 
     public void postAnswer () {
-        var decision = GetComponent<Decision>();
+        var decision =Canvas.GetComponent<Decision>();
+        var question = GetComponent<Question>();
         string ans = "";
-
+        Debug.Log(decision.selectAnswer);
         switch (decision.selectAnswer)
         {
+            case 0:
+                ans = question.buttonLabel1.text; break;
             case 1:
-                ans = question.buttonLabel1.text; break;
+                ans = question.buttonLabel2.text; break;
             case 2:
-                ans = question.buttonLabel1.text; break;
+                ans = question.buttonLabel3.text; break;
             case 3:
-                ans = question.buttonLabel1.text; break;
-            case 4:
-                ans = question.buttonLabel1.text; break;
+                ans = question.buttonLabel4.text; break;
         }
-        Debug.Log("num"+ans);
+        Debug.Log(ans);
         /*_wwwForm = new WWWForm();
 
         //_wwwForm.AddField("answer",ans);

@@ -7,20 +7,21 @@ public class Decision : MonoBehaviour {
     public GameObject IncorrectText;
     public GameObject amimatorControll;
     public GameObject GameController;
-    public answerReturn answerReturn;
+   // public answerReturn answerReturn;
     public int selectAnswer;
 
     void start()
     {
-        answerReturn = GameController.GetComponent<answerReturn>();
+        
     }
 
     public void OnClick(int ClickNumber)
     {
-        //var answerReturn = GetComponent<answerReturn>();
+        var answerReturn = GameController.GetComponent<answerReturn>();
         //answerReturn.ansewer(number);
         selectAnswer = ClickNumber;
 
+        Debug.Log(selectAnswer);
         switch (ClickNumber)
         {
             case 0:
@@ -37,7 +38,7 @@ public class Decision : MonoBehaviour {
                 break;
 
         }
-        //answerReturn.postAnswer();
+        GameController.SendMessage("postAnswer");
         StartCoroutine("postProcessing");
        
     }
