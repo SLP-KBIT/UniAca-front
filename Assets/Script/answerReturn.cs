@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class answerReturn : MonoBehaviour {
-    private WWW _www;
+    private WWW www;
     private WWWForm _wwwForm;
     public GameObject Canvas;
 
@@ -16,8 +16,11 @@ public class answerReturn : MonoBehaviour {
     public void postAnswer () {
         var decision =Canvas.GetComponent<Decision>();
         var question = GetComponent<Question>();
+        string url = "http://133.92.165.48:9000/api/v1/questions/answer/1/";
         string ans = "";
-        Debug.Log(decision.selectAnswer);
+        int num;
+        num = question.getQuestionNumber();
+        url = url + num.ToString();
         switch (decision.selectAnswer)
         {
             case 0:
@@ -30,13 +33,33 @@ public class answerReturn : MonoBehaviour {
                 ans = question.buttonLabel4.text; break;
         }
         Debug.Log(ans);
-        /*_wwwForm = new WWWForm();
+        _wwwForm = new WWWForm();
 
-        //_wwwForm.AddField("answer",ans);
+        _wwwForm.AddField("answer",ans);
 
-        if (_www.error != null) { Debug.Log("Error"); }
+        www = new WWW(url, _wwwForm);
 
-        _www = new WWW("http://133.92.165.48:9000/api/v1/questions/answer/1/1", _wwwForm);
-        yield return _www;*/
+        StartCoroutine(WaitForRequest(www));
+
+        if (www.error != null) {
+            Debug.Log("Error");
+        } else if (www.isDone) {
+            Debug.Log("post"+www.text);
+        }
 	}
+
+    private IEnumerator WaitForRequest(WWW www)
+    {
+        yield return www;
+
+        // check for errors
+        if (www.error == null)
+        {
+            Debug.Log("WWW Ok!: " + www.text);
+        }
+        else
+        {
+            Debug.Log("WWW Error: " + www.error);
+        }
+    }
 }
