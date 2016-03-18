@@ -10,17 +10,14 @@ public class Decision : MonoBehaviour {
    // public answerReturn answerReturn;
     public int selectAnswer;
 
-    void start()
-    {
-        
-    }
-
     public void OnClick(int ClickNumber)
     {
         var answerReturn = GameController.GetComponent<answerReturn>();
+        var timerCount = GameController.GetComponent<TimerCount>();
         //answerReturn.ansewer(number);
         selectAnswer = ClickNumber;
 
+        timerCount.count = false;
         Debug.Log(selectAnswer);
         switch (ClickNumber)
         {
@@ -40,11 +37,11 @@ public class Decision : MonoBehaviour {
         }
         GameController.SendMessage("postAnswer");
         StartCoroutine("postProcessing");
-       
     }
 
     private IEnumerator postProcessing()
     {
+        var timerCount = GameController.GetComponent<TimerCount>();
         yield return new WaitForSeconds(3);
 
         amimatorControll.SendMessage("waitMotion");
@@ -52,15 +49,16 @@ public class Decision : MonoBehaviour {
         IncorrectText.SetActive(false);
 
         GameController.SendMessage("getQuestionControll");
+        timerCount.count = true;
     }
     
-    private void correctAction()
+    public void correctAction()
     {
         CorrectText.SetActive(true);
         amimatorControll.SendMessage("correctMotion");   
     }
 
-    private void incorrectAction()
+    public void incorrectAction()
     {
         IncorrectText.SetActive(true);
         amimatorControll.SendMessage("incorrectMotion");

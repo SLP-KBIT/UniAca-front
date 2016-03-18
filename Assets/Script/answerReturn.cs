@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class answerReturn : MonoBehaviour {
     private WWW www;
-    private WWWForm _wwwForm;
+    private WWWForm wwwForm;
     public GameObject Canvas;
 
     // Use this for initialization
@@ -19,7 +19,7 @@ public class answerReturn : MonoBehaviour {
         string url = "http://133.92.165.48:9000/api/v1/questions/answer/1/";
         string ans = "";
         int num;
-        num = question.getQuestionNumber();
+        num = question.getQuestionNumber() - 1;
         url = url + num.ToString();
         switch (decision.selectAnswer)
         {
@@ -33,11 +33,11 @@ public class answerReturn : MonoBehaviour {
                 ans = question.buttonLabel4.text; break;
         }
         Debug.Log(ans);
-        _wwwForm = new WWWForm();
+        wwwForm = new WWWForm();
 
-        _wwwForm.AddField("answer",ans);
+        wwwForm.AddField("answer",ans);
 
-        www = new WWW(url, _wwwForm);
+        www = new WWW(url, wwwForm);
 
         StartCoroutine(WaitForRequest(www));
 
