@@ -16,8 +16,11 @@ public class ResultPrint : MonoBehaviour {
 
     public IEnumerator QuestionControll()
     {
-        string url = "http://133.92.165.48:9000/api/v1/contests/result/1";
+        string url = "http://133.92.165.48:9000/api/v1/contests/result/";
+        url += StartContest.attendID;
+        Debug.Log(url);
         WWW www = new WWW(url);
+        long result = 0;
         yield return www;
         var numberControll = GetComponent<NumberControll>();
         var textAsset = Resources.Load("sample") as TextAsset;
@@ -26,8 +29,8 @@ public class ResultPrint : MonoBehaviour {
         Debug.Log(www.text);
 
         var json = Json.Deserialize(www.text) as IDictionary<string, object>;
-        //ResultText.text = (string)json["results"];
-        ResultText.text = www.text;
+        result = (long)json["results"];
+        ResultText.text += result.ToString();
     }
 
     // Update is called once per frame

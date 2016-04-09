@@ -12,12 +12,11 @@ public class Question : MonoBehaviour {
     public UnityEngine.UI.Text buttonLabel2;
     public UnityEngine.UI.Text buttonLabel3;
     public UnityEngine.UI.Text buttonLabel4;
-    private int number;
+    private int number = 1;
 
     void Start()
     {
-        number = 1;
-        StartCoroutine("QuestionControll");
+
     }
 
     public void getQuestionControll()
@@ -31,9 +30,11 @@ public class Question : MonoBehaviour {
 
     public IEnumerator QuestionControll()
     {
-        string temp1 = "http://133.92.165.48:9000/api/v1/questions/1/";
+        var startContest = GetComponent<StartContest>();
+        string temp1 = "http://133.92.165.48:9000/api/v1/questions/";
         string temp2 = number.ToString();
-        string url = temp1 + temp2;
+        string url = temp1 + startContest.getAttendID() + "/" + temp2;
+        Debug.Log(url);
         WWW www = new WWW(url);
         yield return www;
         var numberControll = GetComponent<NumberControll>();
