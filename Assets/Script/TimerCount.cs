@@ -4,7 +4,7 @@ using System.Collections;
 
 public class TimerCount : MonoBehaviour {
     public float timer;
-    public const float  Limit = 10;
+    public const float  Limit = 30;
     public float length;
     public bool count = true;
     public UnityEngine.UI.Text TimeLabel;

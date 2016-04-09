@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using MiniJSON;
+using LitJson;
 
 public class Decision : MonoBehaviour {
 
@@ -14,12 +17,15 @@ public class Decision : MonoBehaviour {
     {
         var answerReturn = GameController.GetComponent<answerReturn>();
         var timerCount = GameController.GetComponent<TimerCount>();
+        var numberControll = GetComponent<NumberControll>();
+        var question = GetComponent<Question>();
+
         //answerReturn.ansewer(number);
         selectAnswer = ClickNumber;
 
         timerCount.count = false;
         Debug.Log(selectAnswer);
-        switch (ClickNumber)
+        /*switch (ClickNumber)
         {
             case 0:
                 correctAction();
@@ -34,8 +40,10 @@ public class Decision : MonoBehaviour {
                 incorrectAction();
                 break;
 
-        }
+        }*/
         GameController.SendMessage("postAnswer");
+
+        
         StartCoroutine("postProcessing");
     }
 

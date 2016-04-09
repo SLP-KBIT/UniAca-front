@@ -22,7 +22,11 @@ public class Question : MonoBehaviour {
 
     public void getQuestionControll()
     {
-        StartCoroutine("QuestionControll");
+        if (number > 10) {
+            Application.LoadLevel("result");
+        } else {
+            StartCoroutine("QuestionControll");
+        }
     }
 
     public IEnumerator QuestionControll()
