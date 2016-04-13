@@ -29,7 +29,7 @@ public class TimerCount : MonoBehaviour {
             count = false;
             decision.StartCoroutine("postProcessing");
         }
-        TimeLabel.text = timer.ToString();
+        TimeLabel.text = timer.ToString("F1");
         slider.value = timer;
     }
 }

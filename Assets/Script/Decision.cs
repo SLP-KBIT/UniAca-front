@@ -25,22 +25,6 @@ public class Decision : MonoBehaviour {
 
         timerCount.count = false;
         Debug.Log(selectAnswer);
-        /*switch (ClickNumber)
-        {
-            case 0:
-                correctAction();
-                break;
-            case 1:
-                incorrectAction();
-                break;
-            case 2:
-                incorrectAction();
-                break;
-            case 3:
-                incorrectAction();
-                break;
-
-        }*/
         GameController.SendMessage("postAnswer");
 
         

@@ -11,24 +11,15 @@ public class answerReturn : MonoBehaviour {
     public GameObject Canvas;
     public string results;
 
-    // Use this for initialization
-    /* public void answer ( int number ) {
-         //StartCoroutine(postAnswer(number));
-         postAnswer(number);
-     }*/
-    void start()
-    {
-        
-    }
-
     public void postAnswer () {
-        var decision =Canvas.GetComponent<Decision>();
+        var decision = Canvas.GetComponent<Decision>();
         var question = GetComponent<Question>();
-        string url = "http://133.92.165.48:9000/api/v1/question/1/";
+        string url = "http://133.92.165.48:9000/api/v1/question/";
         string ans = "";
         int num;
-        string correct = "correct";
+        
 
+        url = url + StartContest.attendID + "/";
         num = question.getQuestionNumber() - 1;
         url = url + num.ToString();
         switch (decision.selectAnswer)
@@ -42,6 +33,7 @@ public class answerReturn : MonoBehaviour {
             case 3:
                 ans = question.buttonLabel4.text; break;
         }
+        Debug.Log(url);
         Debug.Log(ans);
         wwwForm = new WWWForm();
 
@@ -52,13 +44,6 @@ public class answerReturn : MonoBehaviour {
         StartCoroutine(WaitForRequest(www));
 
         Debug.Log(results);
-
-        if ( results == correct ) {
-            decision.correctAction();
-        }
-        else {
-            decision.incorrectAction();
-        }
 
         if (www.error != null) {
             Debug.Log("Error");
@@ -71,6 +56,8 @@ public class answerReturn : MonoBehaviour {
     {
         yield return www;
 
+        string correct = "correct";
+        var decision = Canvas.GetComponent<Decision>();
         var textAsset = Resources.Load("sample") as TextAsset;
         var jsonText = textAsset.text;
 
@@ -87,6 +74,15 @@ public class answerReturn : MonoBehaviour {
         else
         {
             Debug.Log("WWW Error: " + www.error);
+        }
+
+        if (results == correct)
+        {
+            decision.correctAction();
+        }
+        else
+        {
+            decision.incorrectAction();
         }
     }
 }
