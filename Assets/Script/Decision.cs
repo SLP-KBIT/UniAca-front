@@ -19,6 +19,7 @@ public class Decision : MonoBehaviour {
         var timerCount = GameController.GetComponent<TimerCount>();
         var numberControll = GetComponent<NumberControll>();
         var question = GetComponent<Question>();
+        var contestStatusController = GetComponent<ContestStatusController>();
 
         //answerReturn.ansewer(number);
         selectAnswer = ClickNumber;
@@ -26,7 +27,6 @@ public class Decision : MonoBehaviour {
         timerCount.count = false;
         Debug.Log(selectAnswer);
         GameController.SendMessage("postAnswer");
-
         
         StartCoroutine("postProcessing");
     }
@@ -34,6 +34,10 @@ public class Decision : MonoBehaviour {
     private IEnumerator postProcessing()
     {
         var timerCount = GameController.GetComponent<TimerCount>();
+        var contestStatusController = GetComponent<ContestStatusController>();
+
+        //contestStatusController.FetchContestStatus();
+
         yield return new WaitForSeconds(3);
 
         amimatorControll.SendMessage("waitMotion");

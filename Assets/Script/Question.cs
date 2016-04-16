@@ -31,6 +31,7 @@ public class Question : MonoBehaviour {
     public IEnumerator QuestionControll()
     {
         var startContest = GetComponent<StartContest>();
+        var contestStatusController = GetComponent<ContestStatusController>();
         string temp1 = "http://133.92.165.48:9000/api/v1/questions/";
         string temp2 = number.ToString();
         string url = temp1 + startContest.getAttendID() + "/" + temp2;
@@ -49,6 +50,7 @@ public class Question : MonoBehaviour {
         buttonLabel3.text = (string)jsonData["choices"][2];
         buttonLabel4.text = (string)jsonData["choices"][3];
         numberControll.numberPrint();
+        contestStatusController.FetchContestStatus();
         number += 1;
     }
 
